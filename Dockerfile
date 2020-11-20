@@ -1,4 +1,4 @@
-FROM golang:1.9.4-alpine3.7 AS builder
+FROM golang:1.15-alpine AS builder
 WORKDIR /go/src/github.com/bdwyertech/registrator/
 COPY . .
 RUN \
@@ -11,7 +11,7 @@ RUN \
 		-o bin/registrator \
 		.
 
-FROM alpine:3.7
+FROM alpine
 RUN apk add --no-cache ca-certificates
 COPY --from=builder /go/src/github.com/bdwyertech/registrator/bin/registrator /bin/registrator
 
