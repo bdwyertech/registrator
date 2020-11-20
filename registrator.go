@@ -10,9 +10,9 @@ import (
 	"strings"
 	"time"
 
+	"github.com/bdwyertech/registrator/bridge"
 	dockerapi "github.com/fsouza/go-dockerclient"
 	"github.com/gliderlabs/pkg/usage"
-	"github.com/gliderlabs/registrator/bridge"
 )
 
 var Version string
