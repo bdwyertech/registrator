@@ -1,11 +1,7 @@
 FROM golang:1.15-alpine AS builder
 WORKDIR /go/src/github.com/bdwyertech/registrator/
 COPY . .
-RUN \
-	apk add --no-cache curl git \
-	&& curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh \
-	&& dep ensure -vendor-only \
-	&& CGO_ENABLED=0 GOOS=linux go build \
+RUN CGO_ENABLED=0 GOOS=linux go build \
 		-a -installsuffix cgo \
 		-ldflags "-X main.Version=$(cat VERSION)" \
 		-o bin/registrator \
